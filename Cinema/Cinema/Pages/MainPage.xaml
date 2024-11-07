@@ -1,0 +1,53 @@
+﻿<Page x:Class="Cinema.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cinema.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="MainPage">
+
+    <Grid Background ="Gray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock Text="Название фильма"></TextBlock>
+
+            <TextBox Width="300" HorizontalAlignment="Left" x:Name="TBName" Text="{Binding FilmName}"></TextBox>
+            <TextBlock  Text="Описание фильма"></TextBlock>
+            
+            <TextBox Width="300" HorizontalAlignment="Left" x:Name="TBDescription" Text="{Binding Description}"></TextBox>
+            <TextBlock Text="Жанр"></TextBlock>
+            <ComboBox Width="300" HorizontalAlignment="Left" x:Name="CBGenre" SelectedItem="{Binding Genre.GenreName}" DisplayMemberPath="GenreName"></ComboBox>
+            <TextBlock Text="Дата показа фильма"></TextBlock>
+            <DatePicker Width="300" HorizontalAlignment="Left" x:Name="DPDate" SelectedDate="{Binding ShowDate}"></DatePicker>
+            <TextBlock Text="Пушкинская карта"></TextBlock>
+            <ComboBox Width="300" HorizontalAlignment="Left" x:Name="CBAccess" SelectedItem="{Binding CardAccess}" DisplayMemberPath="CardAccess"></ComboBox>
+            <Button  HorizontalAlignment="Left" Content="Сохранить" Click="BSave_Click" Width="150" Margin="0,20,0,0"/>
+            <Button HorizontalAlignment="Left" Content="Очистить" Click="BClean_Click" Width="150" Margin="0,20,0,0"></Button>
+            <Button HorizontalAlignment="Left" Content="Удалить запись" Click="BDelete_Click" Width="150" Margin="0,20,0,0"> </Button>
+            
+        </StackPanel>
+        <DataGrid x:Name="DGFilm"
+                  AutoGenerateColumns="False"
+                  ColumnWidth="*"
+                  Grid.Column="1"
+                  IsReadOnly="True">
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название фильма"
+                                    Binding="{Binding FilmName}"/>
+                <DataGridTextColumn Header="Описание"
+                                    Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Жанр"
+                                    Binding="{Binding Genre.GenreName}"/>
+                <DataGridTextColumn Header="Дата показа"
+                                    Binding="{Binding ShowDate}"/>
+                <DataGridTextColumn Header="Доступ к пушкинской карте" Binding="{Binding CardAccess}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
